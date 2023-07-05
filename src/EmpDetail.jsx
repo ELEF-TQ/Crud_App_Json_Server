@@ -13,6 +13,7 @@ const EmpDetail = () => {
           .then((res) => res.json())
           .then((resp) => {
             empdatachange(resp);
+            console.log(resp)
           })
           .catch((err) => {
             console.log(err.message);
