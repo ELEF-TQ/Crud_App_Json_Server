@@ -9,7 +9,6 @@ import EmpEdit from './EmpEdit';
 function App() {
   return (
     <div className="App">
-      <h1>React JS CRUD Opertations</h1>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />}></Route>

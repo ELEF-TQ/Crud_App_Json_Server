@@ -1,21 +1,9 @@
 {
   "employee": [
     {
-      "id": 4,
-      "name": "Kane Williamson",
-      "email": "kw@in.com",
-      "phone": "908908767"
-    },
-    {
-      "id": 5,
-      "name": "vikram",
-      "email": "vikram@in.com",
-      "phone": "908908767"
-    },
-    {
-      "name": "test",
-      "email": "add this",
-      "phone": "brodcast",
+      "name": "TEST",
+      "email": "test@gmail.com",
+      "phone": "006164951",
       "active": true,
       "id": 6
     }

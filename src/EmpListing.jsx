@@ -11,12 +11,14 @@ const EmpListing = () => {
     const LoadEdit = (id) => {
         navigate("/employee/edit/" + id);
     }
+
+
     const Removefunction = (id) => {
         if (window.confirm('Do you want to remove?')) {
-            fetch("http://localhost:3000/employee/" + id, {
+            fetch("http://192.168.11.113:8000/api/users/" + id, {
                 method: "DELETE"
             }).then((res) => {
-                alert('Removed successfully.')
+                alert('deleted')
                 window.location.reload();
             }).catch((err) => {
                 console.log(err.message)
@@ -25,10 +27,8 @@ const EmpListing = () => {
     }
 
 
-
-
     useEffect(() => {
-        fetch("http://localhost:3000/employee/").then((res) => {
+        fetch("http://192.168.11.113:8000/api/users/").then((res) => {
             return res.json();
         }).then((resp) => {
             empdatachange(resp);
@@ -36,50 +36,57 @@ const EmpListing = () => {
             console.log(err.message);
         })
     }, [])
+
+
     return (
         <div className="container">
-            <div className="card">
-                <div className="card-title">
-                    <h2>Employee Listing</h2>
-                </div>
-                <div className="card-body">
-                    <div className="divbtn">
-                        <Link to="employee/create" className="btn btn-success">Add New (+)</Link>
-                    </div>
-                    <table className="table table-bordered">
-                        <thead className="bg-dark text-white">
-                            <tr>
-                                <td>ID</td>
-                                <td>Name</td>
-                                <td>Email</td>
-                                <td>Phone</td>
-                                <td>Action</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            {empdata &&
-                                empdata.map(item => (
-                                    <tr key={item.id}>
-                                        <td>{item.id}</td>
-                                        <td>{item.name}</td>
-                                        <td>{item.email}</td>
-                                        <td>{item.phone}</td>
-                                        <td><a onClick={() => { LoadEdit(item.id) }} className="btn btn-success">Edit</a>
-                                            <a onClick={() => { Removefunction(item.id) }} className="btn btn-danger">Remove</a>
-                                            <a onClick={() => { LoadDetail(item.id) }} className="btn btn-primary">Details</a>
-                                        </td>
-                                    </tr>
-                                ))
-                            }
-
-                        </tbody>
-
-                    </table>
-                </div>
+          <div className="card">
+            <div className="card-title">
+              <h2>Employee Listing</h2>
             </div>
+            <div className="card-body">
+              <div className="divbtn">
+                <Link to="employee/create" className="btn btn-success">
+                  Add New (+)
+                </Link>
+              </div>
+              <table className="table table-bordered">
+                <thead className="bg-dark text-white">
+                  <tr>
+                    <td>ID</td>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Phone</td>
+                    <td>Action</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.map((item) => (
+                    <tr key={item.id}>
+                      <td>{item.id}</td>
+                      <td>{item.f_name} {item.s_name}</td>
+                      <td>{item.email}</td>
+                      <td>{item.phone}</td>
+                      <td>
+                        <a onClick={() => LoadEdit(item.id)} className="btn btn-success">
+                          Edit
+                        </a>
+                        <a onClick={() => Removefunction(item.id)} className="btn btn-danger">
+                          Remove
+                        </a>
+                        <a onClick={() => LoadDetail(item.id)} className="btn btn-primary">
+                          Details
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-    );
+      );
+      
 }
 
 export default EmpListing;
